@@ -1,6 +1,6 @@
 #include "class.h"
 
-#undef DEBUG
+#define DEBUG 1
 #define NHEAD 14
 
 typedef struct {
@@ -871,7 +871,7 @@ SpectrumHeader Type2Reader::getHead(int scan)
     for (int i = 0; i < nsec; i++) csect.sec_len[i] = getLong();
     for (int i = 0; i < nsec; i++) csect.sec_adr[i] = getLong();
 #ifdef DEBUG
-    printf("%7d %12s %12s %d %d (%d %d %d %d | %d %d %d %d | %d %d %d %d)\n",
+    printf("%7d %12s %12s %d %d (%d %d %d %d | %ld %ld %ld %ld | %ld %ld %ld %ld)\n",
            scan,
            centry.xsourc, centry.xline, centry.xkind,
            csect.nsec,
@@ -900,7 +900,7 @@ SpectrumHeader Type2Reader::getHead(int scan)
         }
         m_ptr = buffer;
 #ifdef DEBUG
-        printf("Sect[%d]=%3d at adr %d of length %d.\n", i, csect.sec_cod[i], secpos, size);
+        printf("Sect[%d]=%3d at adr %ld of length %d.\n", i, csect.sec_cod[i], secpos, size);
 #endif
         fillHeader(buffer, csect.sec_cod[i], 1, csect.sec_len[i]);
     }
@@ -1001,7 +1001,7 @@ std::vector<double> Type2Reader::getFreq(int scan)
     for (int i = 0; i < nsec; i++) csect.sec_len[i] = getLong();
     for (int i = 0; i < nsec; i++) csect.sec_adr[i] = getLong();
 #ifdef DEBUG
-    printf("%7d %12s %12s %d %d (%d %d %d %d | %d %d %d %d | %d %d %d %d)\n",
+    printf("%7d %12s %12s %d %d (%d %d %d %d | %ld %ld %ld %ld | %ld %ld %ld %ld)\n",
            scan,
            centry.xsourc, centry.xline, centry.xkind,
            csect.nsec,
@@ -1030,7 +1030,7 @@ std::vector<double> Type2Reader::getFreq(int scan)
         }
         m_ptr = buffer;
 #ifdef DEBUG
-        printf("Sect[%d]=%3d at adr %d of length %d.\n", i, csect.sec_cod[i], secpos, size);
+        printf("Sect[%d]=%3d at adr %ld of length %d.\n", i, csect.sec_cod[i], secpos, size);
 #endif
         fillHeader(buffer, csect.sec_cod[i], 1, csect.sec_len[i]);
     }
@@ -1119,7 +1119,7 @@ std::vector<double> Type2Reader::getData(int scan)
     for (int i = 0; i < nsec; i++) csect.sec_len[i] = getLong();
     for (int i = 0; i < nsec; i++) csect.sec_adr[i] = getLong();
 #ifdef DEBUG
-    printf("%7d %12s %12s %d %d (%d %d %d %d | %d %d %d %d | %d %d %d %d)\n",
+    printf("%7d %12s %12s %d %d (%d %d %d %d | %ld %ld %ld %ld | %ld %ld %ld %ld)\n",
            scan,
            centry.xsourc, centry.xline, centry.xkind,
            csect.nsec,
@@ -1148,7 +1148,7 @@ std::vector<double> Type2Reader::getData(int scan)
         }
         m_ptr = buffer;
 #ifdef DEBUG
-        printf("Sect[%d]=%3d at adr %d of length %d.\n", i, csect.sec_cod[i], secpos, size);
+        printf("Sect[%d]=%3d at adr %ld of length %d.\n", i, csect.sec_cod[i], secpos, size);
 #endif
         fillHeader(buffer, csect.sec_cod[i], 1, csect.sec_len[i]);
     }

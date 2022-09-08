@@ -147,7 +147,7 @@ static int Reader_init(Reader *self, PyObject *args, PyObject *kwds)
 {
     PyObject *filename = NULL, *tmp;
 
-    static char *kwlist[] = {"filename", NULL};
+    static char *kwlist[] = {(char *)"filename", NULL};
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "O", kwlist, &filename)) return -1;
 
     if (self != NULL) {
@@ -184,7 +184,7 @@ static PyMethodDef Reader_methods[] = {
 };
 
 static PyTypeObject ClassicReaderType = {
-    PyObject_HEAD_INIT(NULL)
+    PyVarObject_HEAD_INIT(NULL, 0)
     "classic.Reader",          /* tp_name */
     sizeof(Reader),            /* tp_basicsize */
     0,                         /* tp_itemsize */
@@ -224,72 +224,72 @@ static PyTypeObject ClassicReaderType = {
     Reader_new,                /* tp_new */
 };
 
-static PyObject* py_iarray(PyObject* self)
-{
-    int *data;
-    long int dims[] = { 10 };
-    PyObject *array;
+// static PyObject* py_iarray(PyObject* self)
+// {
+//     int *data;
+//     long int dims[] = { 10 };
+//     PyObject *array;
 
-    array = PyArray_SimpleNew(1, dims, NPY_INT32);
-    data = (int *)PyArray_GETPTR1((PyArrayObject *)array, 0);
-    for (int i = 0; i < 10; i++) {
-        data[i] = i;
-    }
+//     array = PyArray_SimpleNew(1, dims, NPY_INT32);
+//     data = (int *)PyArray_GETPTR1((PyArrayObject *)array, 0);
+//     for (int i = 0; i < 10; i++) {
+//         data[i] = i;
+//     }
 
-    return array;
-}
+//     return array;
+// }
 
-static PyObject* py_barray(PyObject* self)
-{
-    bool *data;
-    long int dims[] = { 10 };
-    PyObject *array;
+// static PyObject* py_barray(PyObject* self)
+// {
+//     bool *data;
+//     long int dims[] = { 10 };
+//     PyObject *array;
 
-    array = PyArray_SimpleNew(1, dims, NPY_BOOL);
-    data = (bool *)PyArray_GETPTR1((PyArrayObject *)array, 0);
-    for (int i = 0; i < 10; i++) {
-        data[i] = (i%2) == 0;
-    }
+//     array = PyArray_SimpleNew(1, dims, NPY_BOOL);
+//     data = (bool *)PyArray_GETPTR1((PyArrayObject *)array, 0);
+//     for (int i = 0; i < 10; i++) {
+//         data[i] = (i%2) == 0;
+//     }
 
-    return array;
-}
+//     return array;
+// }
 
-static PyObject* py_darray(PyObject* self)
-{
-    double *data;
-    long int dims[] = { 10 };
-    PyObject *array;
+// static PyObject* py_darray(PyObject* self)
+// {
+//     double *data;
+//     long int dims[] = { 10 };
+//     PyObject *array;
 
-    array = PyArray_SimpleNew(1, dims, NPY_DOUBLE);
-    data = (double *)PyArray_GETPTR1((PyArrayObject *)array, 0);
-    for (int i = 0; i < 10; i++) {
-        data[i] = (double)i;
-    }
+//     array = PyArray_SimpleNew(1, dims, NPY_DOUBLE);
+//     data = (double *)PyArray_GETPTR1((PyArrayObject *)array, 0);
+//     for (int i = 0; i < 10; i++) {
+//         data[i] = (double)i;
+//     }
 
-    return array;
-}
+//     return array;
+// }
 
-static PyObject* py_sarray(PyObject* self)
-{
-    char *data;
-    long int dims[] = { 10 };
-    PyObject *op, *array;
-    PyArray_Descr *descr;
+// static PyObject* py_sarray(PyObject* self)
+// {
+//     char *data;
+//     long int dims[] = { 10 };
+//     PyObject *op, *array;
+//     PyArray_Descr *descr;
 
-    op = Py_BuildValue("s", "S10");
-    PyArray_DescrConverter(op, &descr);
-    Py_DECREF(op);
-    array = PyArray_SimpleNewFromDescr(1, dims, descr);
-    data = (char *)PyArray_GETPTR1((PyArrayObject *)array, 0);
-    memset(data, 0, 100);
-    strncpy(data, "hello", 5);
-    data = (char *)PyArray_GETPTR1((PyArrayObject *)array, 1);
-    strncpy(data, "world", 5);
-    data = (char *)PyArray_GETPTR1((PyArrayObject *)array, 2);
-    strncpy(data, "helloworld", 10);
+//     op = Py_BuildValue("s", "S10");
+//     PyArray_DescrConverter(op, &descr);
+//     Py_DECREF(op);
+//     array = PyArray_SimpleNewFromDescr(1, dims, descr);
+//     data = (char *)PyArray_GETPTR1((PyArrayObject *)array, 0);
+//     memset(data, 0, 100);
+//     strncpy(data, "hello", 5);
+//     data = (char *)PyArray_GETPTR1((PyArrayObject *)array, 1);
+//     strncpy(data, "world", 5);
+//     data = (char *)PyArray_GETPTR1((PyArrayObject *)array, 2);
+//     strncpy(data, "helloworld", 10);
 
-    return array;
-}
+//     return array;
+// }
 
 static PyObject* py_version(PyObject* self)
 {
