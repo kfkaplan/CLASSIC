@@ -283,7 +283,7 @@ class ClassReader {
     char buffer[BUFSIZE];
 };
 
-#define MAXEXT 10
+#define MAXEXT 99999999
 
 /**
  * A class to read a CLASSIC file of type 1.
