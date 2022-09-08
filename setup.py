@@ -1,6 +1,7 @@
 from distutils.core import setup, Extension
+import numpy
 
-module = Extension('classic', sources = ['classicModule.cpp', 'class.cpp'])
+module = Extension('classic', sources = ['classicModule.cpp', 'class.cpp'], include_dirs=[numpy.get_include()])
 
 setup (name = 'PackageName',
        version = '1.0',
@@ -11,3 +12,4 @@ setup (name = 'PackageName',
        maintainer_email = "michael.olberg@chalmers.se",
        keywords = ["C-extension","Fibonacci"],
        ext_modules = [module])
+
