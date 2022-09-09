@@ -341,7 +341,7 @@ void ClassReader::fillHeader(char *obsblock, int code, int addr, int len)
                cdesc.lcalof, cdesc.bcalof, cdesc.geolong, cdesc.geolat, cdesc.alti);
 #endif
     } else {
-        fprintf(stderr, "cannot handle CLASS section code %d yet.Sorry.", code);
+        //fprintf(stderr, "cannot handle CLASS section code %d yet.Sorry.", code); //Commented out to prevent hang in an ipython notbook when loading a large class file
     }
 }
 
