@@ -1,6 +1,6 @@
 #include "class.h"
 
-#define DEBUG 0
+//define DEBUG 0
 #define NHEAD 14
 
 typedef struct {
