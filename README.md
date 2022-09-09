@@ -1,4 +1,15 @@
+### THIS FORK:
+
+This fork of CLASSIC has been slightly modified to work with CLASS data files from the GREAT instrument on SOFIA and compile on a modern Mac OS with the latest version of python.  The goal is to allow GREAT data to be read into python without the need to install Gildas.  In theory, it should work on any OS and most CLASS data files.  This has not been extensively tested so please raise an issue to report any bugs.
+
+This version can be installed via the original instructions below, or using pip:
+```
+pip install -U git+https://github.com/kfkaplan/CLASSIC.git@master
+```
+
+
 # A Python interface to the CLASSIC data container
+
 
 The CLASSIC data container is a a digital format for single-dish or
 interferometric radio-astronomy data used by the GILDAS software. The
